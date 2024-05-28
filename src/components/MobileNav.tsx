@@ -1,5 +1,5 @@
 import { Separator } from "./ui/separator";
-import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "./ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Menu } from "lucide-react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
