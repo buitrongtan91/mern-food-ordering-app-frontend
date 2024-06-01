@@ -6,6 +6,7 @@ const routes: RoutesType = {
     home: "/",
     login: "/login",
     profile: "/profile/:id",
+    manageRestaurant: "/manage-restaurant",
     authCallBack: "auth-callback",
 };
 

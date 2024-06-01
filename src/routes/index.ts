@@ -1,8 +1,7 @@
-import { Home, Profile } from "@/pages";
+import { Home, Profile, AuthCallBackPage, ManageRestaurantPage } from "@/pages";
 import { DefaultLayout } from "@/layouts";
 import config from "@/config";
 import React, { ReactNode } from "react";
-import AuthCallBackPage from "@/pages/AuthCallBackPage";
 
 type RouteType = {
     path: string;
@@ -28,6 +27,11 @@ const privateRoutes: RouteType[] = [
         path: config.routes.authCallBack,
         component: AuthCallBackPage,
         layout: React.Fragment,
+    },
+    {
+        path: config.routes.manageRestaurant,
+        component: ManageRestaurantPage,
+        layout: DefaultLayout,
     },
 ];
 

@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { LogOut, User } from "lucide-react";
+import { LogOut, User, Utensils } from "lucide-react";
 
 import {
     DropdownMenu,
@@ -31,6 +31,12 @@ function UserMenu() {
                         <DropdownMenuItem>
                             <User className="mr-2 h-4 w-4" />
                             <span>Profile</span>
+                        </DropdownMenuItem>
+                    </Link>
+                    <Link to={`/manage-restaurant`}>
+                        <DropdownMenuItem>
+                            <Utensils className="mr-2 h-4 w-4" />
+                            <span>Manage restaurant</span>
                         </DropdownMenuItem>
                     </Link>
                 </DropdownMenuGroup>
