@@ -1,4 +1,4 @@
-import { Home, Profile, AuthCallBackPage, ManageRestaurantPage } from "@/pages";
+import { Home, Profile, AuthCallBackPage, ManageRestaurantPage, SearchPage, DetailPage } from "@/pages";
 import { DefaultLayout } from "@/layouts";
 import config from "@/config";
 import React, { ReactNode } from "react";
@@ -13,6 +13,17 @@ const publicRoutes: RouteType[] = [
     {
         path: config.routes.home,
         component: Home,
+        layout: DefaultLayout,
+    },
+    {
+        path: config.routes.search,
+        component: SearchPage,
+        layout: DefaultLayout,
+    },
+
+    {
+        path: config.routes.detail,
+        component: DetailPage,
         layout: DefaultLayout,
     },
 ];

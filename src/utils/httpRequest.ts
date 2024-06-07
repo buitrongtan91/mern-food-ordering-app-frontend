@@ -8,17 +8,20 @@ const httpRequest = axios.create({
 
 export const get = async (
     url: string,
-    accessToken: string,
-    config?: {
-        headers?: object;
+    options?: {
+        accessToken?: string;
+        config?: {
+            headers?: object;
+            params?: object;
+        };
     }
 ) => {
     try {
         const response = await httpRequest.get(url, {
-            ...config,
+            params: options?.config?.params,
             headers: {
-                ...config?.headers,
-                Authorization: `Bearer ${accessToken}`,
+                ...options?.config?.headers,
+                Authorization: `Bearer ${options?.accessToken}`,
             },
         });
         return response.data;
@@ -32,6 +35,7 @@ export const post = async (
     accessToken: string,
     data: object,
     config?: {
+        params?: object;
         headers?: object;
     }
 ) => {

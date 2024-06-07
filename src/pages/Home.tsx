@@ -1,15 +1,25 @@
 import Hero from "@/components/Hero";
 import landing from "@/assets/imgs/landing.png";
 import appDownload from "@/assets/imgs/appDownload.png";
+import SearchBar, { SearchForm } from "@/components/SearchBar";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+    const navigate = useNavigate();
+    const handleSearchSubmit = (searchFormValues: SearchForm) => {
+        navigate({
+            pathname: `/search/${searchFormValues.searchQuery}`,
+        });
+    };
+
     return (
         <>
             <Hero />
             <div className=" mx-auto flex flex-col gap-12 items-center">
-                <div className="bg-white rounded-lg shadow-md py-8 flex flex-col gap-5 text-center mt-[-20px] md:w-2/3 w-4/5">
+                <div className="bg-white rounded-lg shadow-md py-8 flex flex-col gap-5 text-center mt-[-20px] md:w-4/5 w-4/5">
                     <h1 className="text-4xl font-bold tracking-tight text-gray-800">Welcome to my world !!!</h1>
                     <span className="text-xl">Food is just a click way</span>
+                    <SearchBar placeHolder="Search by city or town" onSubmit={handleSearchSubmit} />
                 </div>
                 <div className="grid md:grid-cols-2 gap-5">
                     <img src={landing} />

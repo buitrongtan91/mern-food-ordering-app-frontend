@@ -54,7 +54,7 @@ export const useGetCurrentUser = () => {
     const getCurrentUserRequest = async (): Promise<User> => {
         const token = await getAccessTokenSilently();
 
-        const response = await get("/user/get-current-user", token);
+        const response = await get("/user/get-current-user", { accessToken: token });
 
         return response;
     };
