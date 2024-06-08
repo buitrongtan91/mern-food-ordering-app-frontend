@@ -10,6 +10,7 @@ const routes: RoutesType = {
     manageRestaurant: "/manage-restaurant",
     authCallBack: "auth-callback",
     detail: "/detail/:id",
+    orderStatus: "/order-status",
 };
 
 export default routes;

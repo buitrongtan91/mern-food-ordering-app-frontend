@@ -74,3 +74,28 @@ export const put = async (
         console.log(err);
     }
 };
+
+export const patch = async (
+    url: string,
+    data: object,
+    options?: {
+        accessToken?: string;
+        config?: {
+            headers?: object;
+            params?: object;
+        };
+    }
+) => {
+    try {
+        const response = await httpRequest.patch(url, data, {
+            params: options?.config?.params,
+            headers: {
+                ...options?.config?.headers,
+                Authorization: `Bearer ${options?.accessToken}`,
+            },
+        });
+        return response.data;
+    } catch (err) {
+        console.log(err);
+    }
+};

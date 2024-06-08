@@ -1,8 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { post, get, put } from "../utils/httpRequest";
+import { post, get, put, patch } from "../utils/httpRequest";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "sonner";
-import { Restaurant, RestaurantSearchResult } from "@/types";
+import { Order, Restaurant, RestaurantSearchResult } from "@/types";
 import { SearchState } from "@/pages/SearchPage";
 
 export const useCreateRestaurant = () => {
@@ -102,4 +102,49 @@ export const useGetRestaurantById = (id?: string) => {
     }
 
     return { restaurant, isLoading };
+};
+
+export const useGetRestaurantOrders = () => {
+    const { getAccessTokenSilently } = useAuth0();
+    const getOrdersRequest = async (): Promise<Order[]> => {
+        const token = await getAccessTokenSilently();
+        const response = await get("/restaurant/order", { accessToken: token });
+        return response;
+    };
+
+    const { data: orders, isLoading, error } = useQuery("fetchOrders", getOrdersRequest);
+
+    if (error) {
+        toast.error("Failed to fetch orders", { duration: 2000 });
+    }
+
+    return { orders, isLoading };
+};
+
+type UpdateOrderStatusRequest = {
+    orderId: string;
+    status: string;
+};
+
+export const useUpdateOrderStatus = () => {
+    const { getAccessTokenSilently } = useAuth0();
+    const updateOrderStatusRequest = async (data: UpdateOrderStatusRequest) => {
+        const token = await getAccessTokenSilently();
+        const response = await patch(`/restaurant/order/${data.orderId}/status`, data, {
+            accessToken: token,
+        });
+        return response;
+    };
+
+    const { mutateAsync: updateOrderStatus, isLoading, isSuccess, error } = useMutation(updateOrderStatusRequest);
+
+    if (isSuccess) {
+        toast.success("Restaurant updated successfully", { duration: 2000 });
+    }
+
+    if (error) {
+        toast.error("Failed to fetch orders", { duration: 2000 });
+    }
+
+    return { updateOrderStatus, isLoading };
 };

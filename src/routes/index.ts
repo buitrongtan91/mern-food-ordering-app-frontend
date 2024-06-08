@@ -1,4 +1,12 @@
-import { Home, Profile, AuthCallBackPage, ManageRestaurantPage, SearchPage, DetailPage } from "@/pages";
+import {
+    Home,
+    Profile,
+    AuthCallBackPage,
+    ManageRestaurantPage,
+    SearchPage,
+    DetailPage,
+    OrderStatusPage,
+} from "@/pages";
 import { DefaultLayout } from "@/layouts";
 import config from "@/config";
 import React, { ReactNode } from "react";
@@ -42,6 +50,11 @@ const privateRoutes: RouteType[] = [
     {
         path: config.routes.manageRestaurant,
         component: ManageRestaurantPage,
+        layout: DefaultLayout,
+    },
+    {
+        path: config.routes.orderStatus,
+        component: OrderStatusPage,
         layout: DefaultLayout,
     },
 ];

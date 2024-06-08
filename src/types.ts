@@ -35,3 +35,26 @@ export type RestaurantSearchResult = {
         pages: number;
     };
 };
+
+export type OrderStatus = "placed" | "paid" | "pending" | "completed" | "delivered" | "cancelled";
+
+export type Order = {
+    _id: string;
+    restaurant: Restaurant;
+    user: User;
+    cartItems: {
+        menuItemId: string;
+        name: string;
+        quantity: number;
+    }[];
+    deliverDetails: {
+        email: string;
+        name: string;
+        addressLine1: string;
+        city: string;
+    };
+    totalAmount: number;
+    status: OrderStatus;
+    createdAt: string;
+    restaurantId: string;
+};
